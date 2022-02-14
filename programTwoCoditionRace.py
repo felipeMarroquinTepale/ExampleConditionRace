@@ -32,7 +32,7 @@ def tarea_hilo():
 
 def main_task():
 	global usuariosViendo
-	# Establece la variable global x a 0
+	# Establece la variable global usuariosViendo a 0
 	usuariosViendo = 0
 
 	# Creando hilos
