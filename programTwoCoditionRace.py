@@ -1,6 +1,7 @@
 import threading
 import requests
 
+#Ejecutar varias veces  para ver lo siguiente
 # Se crean dos hilos t1 y t2 en la función main_task y la variable global usuariosViendo se establece en 0.
 # Cada hilo tiene una función objetivo tarea hilo en la que la función de incremento_personas se llama 100000 veces para simular las personas que veran los datos de la peticion
 # La función de incremento_personas incrementará la variable global usuariosViendo en 1 en cada llamada.
@@ -18,15 +19,14 @@ def incremento_personas():
 	usuariosViendo += 1    
        
 
-def tarea_hilo():
-	
+def tarea_hilo():	
 	# tarea para el metodo 
 	# llama a la funcion de incremento_personas 100000 veces cada que hay una respuesta correcta en la peticion
 	
     res = requests.get('https://www.youtube.com/')
     if res.status_code == 200: #Respuesta correcta en la peticion
         
-	    for _ in range(100000):
+	    for _ in range(100000):	
 		    incremento_personas()
         
 
@@ -38,11 +38,9 @@ def main_task():
 	# Creando hilos
 	t1 = threading.Thread(target=tarea_hilo)
 	t2 = threading.Thread(target=tarea_hilo)
-
 	# comienza hilos
 	t1.start()
 	t2.start()
-
 	# espera hasta que los hilos terminen su trabajo
 	t1.join()
 	t2.join()
